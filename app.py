@@ -39,9 +39,19 @@ if run_clicked:
         log_lines.append(msg)
         status.write("\n\n".join(log_lines))
 
-    with st.spinner("Agents working... this may take a few minutes with a local LLM."):
-        final_state = run_pia(str(data_path), user_prompt, on_event=on_event)
-
+    # with st.spinner("Agents working... this may take a few minutes with a local LLM."):
+    #     final_state = run_pia(str(data_path), user_prompt, on_event=on_event)
+    try:
+        with st.spinner("Agents working... this may take a few minutes with a local LLM."):
+            final_state = run_pia(str(data_path), user_prompt, on_event=on_event)
+    except Exception as exc:
+        status.update(label="❌ Pipeline failed", state="error")
+        st.error(f"Pipeline error: {exc}")
+        st.info("💡 The live demo UI is running on Streamlit Cloud, but the LLM pipeline "
+                "needs a local Ollama instance. Clone the repo and run: "
+                "`ollama pull qwen2.5-coder:7b` then `streamlit run app.py`")
+        st.stop()
+         
     status.update(label="✅ Pipeline complete", state="complete")
 
     st.success(f"Run ID: `{final_state['run_id']}`")
