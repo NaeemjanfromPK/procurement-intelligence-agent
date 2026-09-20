@@ -4,8 +4,9 @@
 Built by a procurement professional with 8 years of supplier contract management — this system automates what a strategic sourcing team does when a key supplier starts slipping.
 
 ![Python](https://img.shields.io/badge/python-3.12%2B-blue)
-![Tests](https://img.shields.io/badge/tests-6%2F6-brightgreen)
+![Tests](https://github.com/NaeemjanfromPK/procurement-intelligence-agent/actions/workflows/tests.yml/badge.svg)
 ![LLM](https://img.shields.io/badge/LLM-100%25%20local%20(Ollama)-orange)
+![License](https://img.shields.io/badge/license-MIT-green)
 
 ## 🎥 Demo
 
@@ -56,7 +57,9 @@ python -c "from pia.graph import run_pia; print(run_pia('data/sample_suppliers.c
 
 ## 🧪 Tests
 
-![Tests](https://github.com/NaeemjanfromPK/procurement-intelligence-agent/actions/workflows/tests.yml/badge.svg)
+```bash
+pytest -v        # 6/6 in ~2s — LLM fully mocked, no Ollama required
+```
 
 ## 🗂️ Project Structure
 
@@ -72,7 +75,7 @@ pia/
 ├── llm.py           # Ollama backend (local, JSON mode, health check)
 ├── state.py         # typed graph state
 └── config.py        # env-driven settings
-app.py               # Streamlit dashboard
+app.py               # Streamlit dashboard (with dataset pre-flight validation)
 tests/               # 6 tests, fully mocked LLM, &lt;2s
 ```
 
@@ -84,6 +87,7 @@ tests/               # 6 tests, fully mocked LLM, &lt;2s
 | **100% local LLM** (Ollama) | Zero API cost; procurement data never leaves the machine. |
 | **LangGraph, not a script** | Agents are composable nodes; the graph documents the workflow. |
 | **Mocked-LLM tests in &lt;2s** | CI-ready; determinism is a feature, not an afterthought. |
+| **Pre-flight dataset validation** | Users get told *which* columns are missing and *why* before the pipeline runs. |
 
 ## 🗺️ Roadmap
 
