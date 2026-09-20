@@ -56,9 +56,7 @@ python -c "from pia.graph import run_pia; print(run_pia('data/sample_suppliers.c
 
 ## 🧪 Tests
 
-```bash
-pytest -v        # 6/6 in ~2s — LLM fully mocked, no Ollama required
-```
+![Tests](https://github.com/NaeemjanfromPK/procurement-intelligence-agent/actions/workflows/tests.yml/badge.svg)
 
 ## 🗂️ Project Structure
 
